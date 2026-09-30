@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="filter-bar">
+    <view class="filter-item {{activeFilter === 'all' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="all">全部</view>
+    <view class="filter-item {{activeFilter === 'pending' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="pending">待审批</view>
+    <view class="filter-item {{activeFilter === 'approved' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="approved">已通过</view>
+    <view class="filter-item {{activeFilter === 'rejected' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="rejected">未通过</view>
+    <view class="filter-item {{activeFilter === 'withdrawn' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="withdrawn">已撤回</view>
+  </view>
+
+  <view wx:if="{{filteredList.length === 0}}" class="empty">这个分类下还没有申请记录～</view>
+
+  <view class="card" wx:for="{{filteredList}}" wx:key="_id" bindtap="onTapCard" data-id="{{item._id}}">
+    <view class="card-title">审批结果通知</view>
+
+    <view class="row">
+      <text class="row-label">审批标题</text>
+      <text class="row-value">购买申请：{{item.title}}</text>
+    </view>
+    <view class="row">
+      <text class="row-label">审批结果</text>
+      <text class="row-value status-{{item.status}}">{{item.statusText}}</text>
+    </view>
+    <view class="row">
+      <text class="row-label">审批时间</text>
+      <text class="row-value">{{item.approveTimeText || '待审批'}}</text>
+    </view>
+    <view class="row">
+      <text class="row-label">审批意见</text>
+      <text class="row-value">{{item.comment || '暂无'}}</text>
+    </view>
+
+    <view class="card-actions" wx:if="{{item.status === 'pending'}}">
+      <view class="withdraw-btn" catchtap="onWithdraw" data-id="{{item._id}}">撤回申请</view>
+    </view>
+    <view class="card-actions" wx:if="{{item.status === 'withdrawn'}}">
+      <view class="withdraw-btn" catchtap="onEdit" data-id="{{item._id}}">编辑并重新提交</view>
+    </view>
+  </view>
+</view>

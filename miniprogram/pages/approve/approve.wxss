@@ -1,0 +1,100 @@
+.page {
+  background: #1f1f1f;
+  min-height: 100vh;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  background: #2b2b2b;
+  border-radius: 40rpx;
+  padding: 6rpx;
+  margin-bottom: 20rpx;
+}
+
+.filter-item {
+  flex: 1;
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+  padding: 14rpx 0;
+  border-radius: 34rpx;
+}
+
+.filter-item.active {
+  background: #ff4d6d;
+  color: #fff;
+  font-weight: 600;
+}
+
+.empty {
+  color: #888;
+  text-align: center;
+  margin-top: 200rpx;
+  font-size: 26rpx;
+}
+
+.card {
+  background: #2b2b2b;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-focus {
+  border: 2rpx solid #ff4d6d;
+  box-shadow: 0 0 16rpx rgba(255, 77, 109, 0.4);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12rpx;
+}
+
+.row-label {
+  color: #999;
+  font-size: 26rpx;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+
+.row-value {
+  color: #eee;
+  font-size: 26rpx;
+  flex: 1;
+}
+
+.link {
+  color: #58a6ff;
+  text-decoration: underline;
+}
+
+.comment-input {
+  background: #1f1f1f;
+  color: #fff;
+  border-radius: 10rpx;
+  padding: 16rpx;
+  font-size: 26rpx;
+  width: 100%;
+  min-height: 100rpx;
+  box-sizing: border-box;
+  margin: 16rpx 0;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+}
+
+.btn {
+  flex: 1;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+
+.btn.approve { background: #4cd964; color: #fff; }
+.btn.reject { background: #444; color: #fff; }

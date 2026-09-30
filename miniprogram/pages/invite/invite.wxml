@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="section">
+    <view class="section-title">我要邀请审批人</view>
+    <view class="hint">生成邀请后，转发给对方或让对方扫码，对方打开就能完成绑定，不用输入任何东西。</view>
+
+    <input class="input" placeholder="给这个人起个称呼，如「男朋友」（可选）" bindinput="onLabelInput" value="{{relationLabel}}" />
+
+    <button class="btn primary" bindtap="onCreateInvite" loading="{{creating}}">生成邀请</button>
+
+    <view class="share-row" wx:if="{{inviteCode}}">
+      <button class="btn small primary" open-type="share">转发给对方</button>
+      <button class="btn small" bindtap="onGenerateQrcode" loading="{{generatingQrcode}}">生成二维码</button>
+    </view>
+
+    <view class="qrcode-box" wx:if="{{qrcodeUrl}}">
+      <image class="qrcode-img" src="{{qrcodeUrl}}" mode="widthFix" show-menu-by-longpress="{{true}}" />
+      <text class="qrcode-hint">长按图片保存，或直接发给对方，扫码即可绑定</text>
+    </view>
+  </view>
+
+  <view class="divider"></view>
+
+  <view class="section" wx:if="{{codeInput}}">
+    <view class="section-title">确认绑定为审批人</view>
+    <view class="scan-banner">
+      <text>已通过邀请打开，填好称呼即可完成绑定</text>
+    </view>
+
+    <view class="label-row">
+      <text class="required-mark">*</text>
+      <text class="label-text">你的称呼（对方会看到这个名字）</text>
+    </view>
+    <input class="input" placeholder="例如：小美 / 男朋友" bindinput="onNameInput" value="{{myName}}" />
+
+    <button class="btn primary" bindtap="onBind" loading="{{binding}}">确认绑定</button>
+  </view>
+
+  <view class="section" wx:if="{{myApprovers.length > 0}}">
+    <view class="section-title">我已绑定的审批人</view>
+    <view class="approver-item" wx:for="{{myApprovers}}" wx:key="relationId">
+      <text class="approver-name">{{item.approverName}}{{item.relationLabel ? '（' + item.relationLabel + '）' : ''}}</text>
+      <text class="remove-btn" bindtap="onRemoveApprover" data-id="{{item.relationId}}" data-name="{{item.approverName}}">移除</text>
+    </view>
+  </view>
+</view>

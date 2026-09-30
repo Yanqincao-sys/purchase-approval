@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="form-card" wx:if="{{!lastSubmittedId}}">
+    <view class="edit-banner" wx:if="{{editMode}}">正在编辑已撤回的申请，修改后重新提交会变回待审批</view>
+
+    <view class="form-item">
+      <text class="label">商品名称</text>
+      <input class="input" placeholder="例如：鞋子" bindinput="onInput" data-field="title" value="{{form.title}}" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">商品链接（可选）</text>
+      <input class="input" placeholder="粘贴购买链接" bindinput="onInput" data-field="link" value="{{form.link}}" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">价格（元）</text>
+      <input class="input" type="digit" placeholder="0.00" bindinput="onInput" data-field="price" value="{{form.price}}" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">购买理由</text>
+      <textarea class="textarea" placeholder="说说为什么想买～" bindinput="onInput" data-field="reason" value="{{form.reason}}" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">审批人</text>
+      <picker wx:if="{{approverNames.length > 0}}" mode="selector" range="{{approverNames}}" bindchange="onPickApprover">
+        <view class="picker">{{form.approverName || '选择审批人'}}</view>
+      </picker>
+      <view wx:else class="picker no-approver" bindtap="onGoInvite">还没有审批人，点击去邀请绑定 ></view>
+    </view>
+  </view>
+
+  <button wx:if="{{!lastSubmittedId}}" class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">{{editMode ? '重新提交' : '提交申请'}}</button>
+
+  <view wx:if="{{!lastSubmittedId}}" class="tip">提交后将通过订阅消息通知审批人，结果也会推送给你～</view>
+  <view wx:if="{{!lastSubmittedId}}" class="tip link" bindtap="onGoInvite">管理审批人 ></view>
+
+  <view class="success-card" wx:if="{{lastSubmittedId}}">
+    <view class="success-title">✅ {{editMode ? '重新提交成功' : '申请已提交'}}</view>
+    <view class="success-desc">对方可能还没打开小程序看到通知，建议直接转发给 TA，点开就能立刻审批～</view>
+    <button class="share-btn" open-type="share">转发给审批人</button>
+    <button class="again-btn" bindtap="onNewOne">再提交一个</button>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="filter-bar">
+    <view class="filter-item {{activeFilter === 'pending' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="pending">待审批</view>
+    <view class="filter-item {{activeFilter === 'approved' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="approved">已通过</view>
+    <view class="filter-item {{activeFilter === 'rejected' ? 'active' : ''}}" bindtap="onFilterChange" data-filter="rejected">已驳回</view>
+  </view>
+
+  <view wx:if="{{filteredList.length === 0}}" class="empty">这个分类下暂无记录～</view>
+
+  <!-- 待审批：可操作 -->
+  <block wx:if="{{activeFilter === 'pending'}}">
+    <view class="card {{item._id === focusId ? 'card-focus' : ''}}" wx:for="{{filteredList}}" wx:key="_id">
+      <view class="row"><text class="row-label">商品</text><text class="row-value">{{item.title}}</text></view>
+      <view class="row"><text class="row-label">价格</text><text class="row-value">¥{{item.price}}</text></view>
+      <view class="row" wx:if="{{item.link}}"><text class="row-label">链接</text><text class="row-value link" bindtap="onCopyLink" data-link="{{item.link}}">点击复制</text></view>
+      <view class="row"><text class="row-label">理由</text><text class="row-value">{{item.reason || '无'}}</text></view>
+
+      <textarea class="comment-input" placeholder="填写审批意见（可选）" bindinput="onCommentInput" data-id="{{item._id}}" value="{{item.commentInput}}" />
+
+      <view class="btn-row">
+        <button class="btn reject" bindtap="onDecide" data-id="{{item._id}}" data-status="rejected">驳回</button>
+        <button class="btn approve" bindtap="onDecide" data-id="{{item._id}}" data-status="approved">通过</button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 已通过/已驳回：只读展示 -->
+  <block wx:else>
+    <view class="card history-card" wx:for="{{filteredList}}" wx:key="_id">
+      <view class="row"><text class="row-label">商品</text><text class="row-value">{{item.title}}</text></view>
+      <view class="row"><text class="row-label">价格</text><text class="row-value">¥{{item.price}}</text></view>
+      <view class="row"><text class="row-label">理由</text><text class="row-value">{{item.reason || '无'}}</text></view>
+      <view class="row"><text class="row-label">时间</text><text class="row-value">{{item.approveTimeText}}</text></view>
+      <view class="row"><text class="row-label">意见</text><text class="row-value">{{item.comment || '暂无'}}</text></view>
+    </view>
+  </block>
+</view>

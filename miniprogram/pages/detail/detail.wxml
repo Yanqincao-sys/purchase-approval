@@ -1,0 +1,65 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view class="content" wx:if="{{!loading && item}}">
+    <view class="status-card status-{{item.status}}">
+      <text class="status-text">{{item.statusText}}</text>
+      <text class="status-sub" wx:if="{{item.status === 'pending'}}">等待审批人处理</text>
+      <text class="status-sub" wx:elif="{{item.status === 'withdrawn'}}">你已撤回这条申请</text>
+      <text class="status-sub" wx:elif="{{item.approveTimeText}}">{{item.approveTimeText}} 处理</text>
+    </view>
+
+    <view class="card">
+      <view class="section-title">申请信息</view>
+      <view class="row">
+        <text class="row-label">商品</text>
+        <text class="row-value">{{item.title}}</text>
+      </view>
+      <view class="row">
+        <text class="row-label">价格</text>
+        <text class="row-value price">¥{{item.price}}</text>
+      </view>
+      <view class="row" wx:if="{{item.link}}">
+        <text class="row-label">链接</text>
+        <text class="row-value link" bindtap="onCopyLink">点击复制</text>
+      </view>
+      <view class="row">
+        <text class="row-label">理由</text>
+        <text class="row-value">{{item.reason || '无'}}</text>
+      </view>
+      <view class="row">
+        <text class="row-label">提交时间</text>
+        <text class="row-value">{{item.createTimeText}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">审批信息</view>
+      <view class="row">
+        <text class="row-label">审批人</text>
+        <text class="row-value">{{item.approverName || '未知'}}</text>
+      </view>
+      <view class="row">
+        <text class="row-label">状态</text>
+        <text class="row-value status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view class="row" wx:if="{{item.approveTimeText}}">
+        <text class="row-label">处理时间</text>
+        <text class="row-value">{{item.approveTimeText}}</text>
+      </view>
+      <view class="row">
+        <text class="row-label">审批意见</text>
+        <text class="row-value">{{item.comment || '暂无'}}</text>
+      </view>
+    </view>
+
+    <view class="actions" wx:if="{{item.status === 'pending'}}">
+      <button class="share-btn" open-type="share">转发给审批人</button>
+      <button class="withdraw-btn" bindtap="onWithdraw">撤回申请</button>
+    </view>
+
+    <view class="actions" wx:if="{{item.status === 'withdrawn' && isApplicant}}">
+      <button class="withdraw-btn" bindtap="onEdit">编辑并重新提交</button>
+    </view>
+  </view>
+</view>

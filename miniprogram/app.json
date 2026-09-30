@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/list/list",
+    "pages/apply/apply",
+    "pages/approve/approve",
+    "pages/detail/detail",
+    "pages/invite/invite"
+  ],
+  "window": {
+    "backgroundColor": "#1f1f1f",
+    "navigationBarBackgroundColor": "#1f1f1f",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "盖戳鸭小助手"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ff4d6d",
+    "backgroundColor": "#1f1f1f",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/list/list", "text": "我的申请" },
+      { "pagePath": "pages/apply/apply", "text": "新建申请" },
+      { "pagePath": "pages/approve/approve", "text": "待我审批" },
+      { "pagePath": "pages/invite/invite", "text": "审批人管理" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

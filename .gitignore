@@ -1,0 +1,16 @@
+# 云函数依赖不入库：部署时选"云端安装依赖"，或在云函数目录里本地 npm install
+node_modules/
+miniprogram_npm/
+
+# 账号相关配置（仓库里提交的是对应的 config.example.js）
+miniprogram/config.js
+cloudfunctions/*/config.js
+
+# 微信开发者工具的本地私有配置（每个人的本地设置不同）
+project.private.config.json
+
+# 系统 / 编辑器
+.DS_Store
+.idea/
+.vscode/
+*.log
