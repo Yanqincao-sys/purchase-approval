@@ -25,7 +25,7 @@
 | <img src="docs/screenshots/01-list.png" width="200"> | <img src="docs/screenshots/02-apply.png" width="200"> | <img src="docs/screenshots/03-detail.png" width="200"> | <img src="docs/screenshots/04-invite.png" width="200"> |
 | 按状态筛选，查看每条申请的审批结果 | 填写商品、价格、理由并选择审批人 | 状态卡片 + 申请信息 + 审批信息 | 生成邀请、管理已绑定的审批人 |
 
-> 截图来自微信开发者工具模拟器，已对审批人称呼做了打码处理。
+> 截图来自微信开发者工具模拟器，「审批人管理」页中的审批人昵称已打码。
 
 ## 技术栈
 
