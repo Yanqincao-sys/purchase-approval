@@ -18,6 +18,15 @@
 | 详情页 | 状态卡片、审批意见，待审批时可一键转发给审批人 |
 | 微信推送 | 新申请 → 通知审批人；审批结果 → 通知申请人（订阅消息） |
 
+## 界面预览
+
+| 我的申请 | 新建申请 | 申请详情 | 审批人管理 |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/screenshots/01-list.png" width="200"> | <img src="docs/screenshots/02-apply.png" width="200"> | <img src="docs/screenshots/03-detail.png" width="200"> | <img src="docs/screenshots/04-invite.png" width="200"> |
+| 按状态筛选，查看每条申请的审批结果 | 填写商品、价格、理由并选择审批人 | 状态卡片 + 申请信息 + 审批信息 | 生成邀请、管理已绑定的审批人 |
+
+> 截图来自微信开发者工具模拟器，已对审批人称呼做了打码处理。
+
 ## 技术栈
 
 - 微信小程序原生框架
@@ -50,7 +59,8 @@ purchase-approval/
 └── docs/
     ├── ARCHITECTURE.md          # 架构、数据模型、设计取舍
     ├── DEBUG-NOTES.md           # 踩坑与排查记录
-    └── USER-GUIDE.md            # 使用说明 / 测试流程
+    ├── USER-GUIDE.md            # 使用说明 / 测试流程
+    └── screenshots/             # README 里用到的界面截图
 ```
 
 ## 快速开始
